@@ -71,16 +71,14 @@
     /* extra-large breakbpoint changes */
   @media screen and (max-width: 1200px) {
     .ApexDeploymentContent{
-        overflow: auto;
-        max-height: calc(100vh - var(--xl-breakpoint-header-height))
+        height: calc(100vh - var(--xl-breakpoint-header-height))
     }
   }
 
    /* large breakbpoint changes */
    @media screen and (max-width: 992px) {
     .ApexDeploymentContent{
-        overflow: auto;
-        max-height: calc(100vh - var(--lg-breakpoint-header-height))
+        height: calc(100vh - var(--lg-breakpoint-header-height))
     }
   }
 
@@ -144,7 +142,6 @@
 
   .ApexCards{
     width: 300px;
-    /* border: 2px solid orange; */
     max-height: 90vh; 
     overflow: auto;
     display: flex;
@@ -186,27 +183,26 @@
 
 
 
-  @media screen and (max-width: 992px) {
-    .ApexDeployment{
-        flex-direction: column;
-    }
+@media screen and (max-width: 992px) {
+.ApexDeployment{
+    flex-direction: column;
+}
 
-    .ApexCards{
-        width: 100%;
-        flex-direction: row;
-        overflow: auto;
-    }
-
-    .ApexCard{
-        min-width: 200px;
-    }
-  }
-
-  .ApexDeploymentContent{
+.ApexCards{
     width: 100%;
-    overflow: scroll !important;
-    /* border: 2px solid green; */
-    height: 100%;
+    flex-direction: row;
+    overflow: auto;
+}
+
+.ApexCard{
+    min-width: 200px;
+}
+}
+
+.ApexDeploymentContent{
+    width: 100%;
+    overflow: auto;
+    max-height: calc(100vh - var(--xl-breakpoint-header-height))
 }
 
   .ApexTopRow{
@@ -218,9 +214,6 @@
       padding-bottom: 20px;
   }
 
-  .ApexBottomRow{
-
-  }
 
   .ApexSnapshot{
     min-width: 100%;
@@ -264,11 +257,12 @@
     background-color: black;
     border-radius: 20px !important;
     overflow: hidden;
-    /* border: 2px solid green; */
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
   }
   
 .cesium-viewer{
     height: 100%;
+
   }
 
   .TopNav{
