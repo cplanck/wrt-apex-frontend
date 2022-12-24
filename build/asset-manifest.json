@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.db81bcb6.css",
+    "main.js": "/static/js/main.f53129ba.js",
+    "static/js/787.db7236e6.chunk.js": "/static/js/787.db7236e6.chunk.js",
+    "static/media/wrt-logo.png": "/static/media/wrt-logo.85b6bdf1741c896f81b1.png",
+    "index.html": "/index.html",
+    "main.db81bcb6.css.map": "/static/css/main.db81bcb6.css.map",
+    "main.f53129ba.js.map": "/static/js/main.f53129ba.js.map",
+    "787.db7236e6.chunk.js.map": "/static/js/787.db7236e6.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.db81bcb6.css",
+    "static/js/main.f53129ba.js"
+  ]
+}
