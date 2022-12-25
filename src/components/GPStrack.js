@@ -1,5 +1,5 @@
 import '../css/ApexApp.css';
-import { Viewer, Polyline, PolylineCollection, CameraFlyTo } from "resium";
+import { Viewer, Polyline, CameraFlyTo, Entity, PolylineCollection, PolylineGraphics } from "resium";
 import { Cartesian3, Color, Material } from "cesium";
 import {Ion} from "cesium";
 import { useQuery } from "@tanstack/react-query";
@@ -21,6 +21,10 @@ function GPStrack(props) {
 
 
   let positions = []
+  let positionArray = []
+
+  let entityArray = []
+
   let fly_to_lat = 0
   let fly_to_long = 0
   let { data, status, error } = useQuery([props.deploymentId], fetchData, {staleTime:100000000}); 
@@ -41,25 +45,22 @@ function GPStrack(props) {
 
         fly_to_lat = fly_to_lat + lat
         fly_to_long = fly_to_long + long
-
-        positions.push(Cartesian3.fromDegrees(long, lat, 10))
+        positions.push(long)
+        positions.push(lat)
       }
+        positionArray = Cartesian3.fromDegreesArray(positions)
         fly_to_lat = fly_to_lat/(data.length)
         fly_to_long = fly_to_long/(data.length)
     }
-
-  const color = Material.fromType('Color', {
-      color: new Color.fromCssColorString('#00416A')
-  });
 
   return (
     <div>
       <div id="cesium-container">
         <Viewer className='cesium-viewer' projectionPicker={false} animation={false} infoBox={false} homeButton={false} fullscreenButton={false} timeline={false} navigationHelpButton={false} baseLayerPicker={false} sceneModePicker={false} navigationInstructionsInitiallyVisible={false} geocoder={false}>
           <CameraFlyTo destination={Cartesian3.fromDegrees(fly_to_long, fly_to_lat, 200)} duration={2.5}/>
-          <PolylineCollection>
-            <Polyline positions={positions} width={3} material={color} /> 
-          </PolylineCollection>
+            <Entity>
+              <PolylineGraphics positions={positionArray}  material={Color.fromCssColorString('#00416A')}/>
+            </Entity>
         </Viewer>
       </div>
     </div>

@@ -14,7 +14,7 @@ function SideNav(props){
             <div className='icon-group'>
                 <SideNavIcon icon={faHurricane} link={'deployments'} setActivePage = {props.setActivePage} />
                 <SideNavIcon icon={faUserAstronaut}  link={'users'} setActivePage = {props.setActivePage} />
-                <SideNavIcon icon={faWrench}  link={'settings'} setActivePage = {props.setActivePage} />
+                <SideNavIcon icon={faWrench}  link={'settings'} setActivePage = {props.setActivePage}/>
             </div>
         </div>
     )

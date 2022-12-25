@@ -146,6 +146,10 @@
     overflow: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    padding-left: 5px;
   }
 
   .ApexCards::-webkit-scrollbar {
@@ -153,8 +157,7 @@
   }
 
   .ApexCards {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+   
   }
 
 .ApexCard{
@@ -162,6 +165,18 @@
     margin-bottom: 15px;
     margin-right: 15px;
     min-width: 200px !important;
+}
+
+.ApexCard.active{
+    background-color: var(--blue) !important;
+}
+
+.grow { 
+    transition: all .2s ease-in-out; 
+    }
+    
+.grow:hover { 
+transform: scale(1.03); 
 }
 
 .Circle{
@@ -294,4 +309,10 @@
 
 .MainPanel{
     margin-top: 30px;
+}
+
+.ApexDatatableWrapper{
+    border-radius: 20px;
+    /* border: 2px solid red; */
+    overflow: hidden !important;
 }
