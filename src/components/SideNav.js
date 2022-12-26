@@ -14,9 +14,11 @@ import IconButton from '@mui/material/IconButton';
 function SideNav(props){
     return(
         <div className={props.menuOpen ? 'SideNav SideNavActive':'SideNav'}>
-            <div className='wrt-logo-wrapper'>
+             <Link to={'/'}>
+            <div className='wrt-logo-wrapper' href={process.env.REACT_APP_FRONTEND_ROOT}>
                 <img src={wrt_logo} className='wrt-logo'/>
             </div>
+            </Link>
             <div className='icon-group'>
                 <SideNavIcon icon={faHurricane} link={'deployments'} setActivePage = {props.setActivePage} title={'Deployments'}/>
                 <SideNavIcon icon={faUserAstronaut}  link={'users'} setActivePage = {props.setActivePage} title={'Users'} />

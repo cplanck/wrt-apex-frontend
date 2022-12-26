@@ -109,9 +109,8 @@ const ApexDataTable3 = (props) => {
       enableColumnVirtualization
       enableGlobalFilterModes
       enablePagination={false}
-    //   enablePinning
       enableRowVirtualization
-      muiTableContainerProps={{ sx: { maxHeight: '350px' } }}
+      muiTableContainerProps={{ sx: { maxHeight: '420px' } }}
       onSortingChange={setSorting}
       state={{ isLoading, sorting }}
       rowVirtualizerInstanceRef={rowVirtualizerInstanceRef} //optional

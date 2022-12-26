@@ -1,5 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import PlaceholderAnimation from './Placeholders';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClock, faArrowsToCircle, faAtom, faCircleInfo } from '@fortawesome/free-solid-svg-icons'
+import Tooltip from '@mui/material/Tooltip';
 var numeral = require('numeral');
 
 
@@ -38,9 +41,39 @@ function ApexInsights(props){
             </div>
             <div>
                 <div className='ApexInsightsWrapper'>
-                    <span className='ApexInsightItemWrapper'><span className='ApexInsightItem'>{data?distance_traveled: <PlaceholderAnimation width={12} size={'sm'}/>}</span> <span className='ApexInsightItemSpan'>Meters<sup>2</sup> swept</span></span>
-                    <span className='ApexInsightItemWrapper'><span className='ApexInsightItem'>{data?hours_operational: <PlaceholderAnimation width={12} size={'sm'}/>}</span><span className='ApexInsightItemSpan'>Hours operational</span></span>
-                    <span className='ApexInsightItemWrapper'><span className='ApexInsightItem'>{data?num_datapoints_formatted: <PlaceholderAnimation width={12} size={'sm'}/>}</span><span className='ApexInsightItemSpan'>Datapoints collected</span></span>
+                    <span className='ApexInsightItemWrapper'>
+                        <div className='ApexInsightItem'>
+                            <FontAwesomeIcon icon={faAtom} className='pe-3's ize={'xs'}/>
+                            {data?distance_traveled: <PlaceholderAnimation width={12} size={'sm'}/>}
+                        </div>
+                            <div className='ApexInsightItemSpan'>
+                                <span>Meters<sup>2</sup> scanned</span>
+                                <Tooltip className='p-3' title={'The total number of square meters scanned assuming a 0m overlap factor.'} placement="right-start" arrow enterDelay={500}><FontAwesomeIcon icon={faCircleInfo} className='pe-3'/></Tooltip>
+                            </div>
+                    </span>
+                    <span className='ApexInsightItemWrapper'>
+                        <div className='ApexInsightItem'>
+                            <FontAwesomeIcon icon={faClock} className='pe-3' size={'xs'}/>
+                            {data?hours_operational: <PlaceholderAnimation width={12} size={'sm'}/>}
+                        </div>
+                            {/* <span className='ApexInsightItemSpan'>
+                                Hours operational
+                            </span> */}
+                             <div className='ApexInsightItemSpan'>
+                                <span>Hours operational</span>
+                                <Tooltip className='p-3' title={'The total time spent scanning.'} placement="right-start" arrow enterDelay={500}><FontAwesomeIcon icon={faCircleInfo} className='pe-3' /></Tooltip>
+                            </div>
+                    </span>
+                    <span className='ApexInsightItemWrapper'>
+                        <div className='ApexInsightItem'>
+                            <FontAwesomeIcon icon={faArrowsToCircle} className='pe-3' size={'xs'}/>
+                            {data?num_datapoints_formatted: <PlaceholderAnimation width={12} size={'sm'} />}
+                        </div>
+                        <div className='ApexInsightItemSpan'>
+                                <span>Datapoints collected</span>
+                                <Tooltip className='p-3' title={'The sum of all the entries in the APEX datafiles.'} placement="right-start" arrow enterDelay={500}><FontAwesomeIcon icon={faCircleInfo} className='pe-3' /></Tooltip>
+                            </div>
+                    </span>
                 </div>
 
             </div>

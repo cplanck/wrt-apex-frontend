@@ -22,18 +22,18 @@ function ApexDeployments(){
             </div>
             <div className='ApexDeploymentContent container-fluid'>
                 <div className='row ApexTopRow'>
-                    <div className='col-12 col-xl-5 ApexToprowTile'>
+                    <div className='col-12 col-xl-5 col-xxl-4 ApexToprowTile'>
                         <ApexSnapshot apexID={apexID} />
                     </div>
-                    <div className='col-12 col-xl-7 ApexToprowTile'>
+                    <div className='col-12 col-xl-7 col-xxl-8 ApexToprowTile'>
                         <GPStrack deploymentId={apexID}/>
                     </div>
                 </div>
                 <div className='row ApexBottomRow'>
-                    <div className='col-12 col-xl-5 ApexToprowTile'>
+                    <div className='col-12 col-xl-12 col-xxl-5 ApexToprowTile'>
                         <ApexInsights apexID={apexID}/>
                     </div>
-                    <div className='col-12 col-xl-7 ApexToprowTile'>
+                    <div className='col-12 col-xl-12 col-xxl-7 ApexToprowTile'>
                         <div className={'ApexDatatableWrapper'}>
                         <ApexDataTable apexID={apexID}/>
                         </div>
