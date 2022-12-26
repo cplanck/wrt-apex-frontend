@@ -8,6 +8,7 @@
     --black: #0D0C0F;
     --dark-grey: #1E1F23;
     --light-grey: #27292D;
+    --extra-light-grey: #757575;
     --light-text: #FFFFFF;
     --orange: #E99B05;
     --blue: #00416A;
@@ -163,6 +164,7 @@
     margin-bottom: 15px;
     margin-right: 15px;
     width: 230px;
+    min-width: 230px !important;
     min-height: 100px;
 }
 
@@ -171,7 +173,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    /* max-width: 150px; */
     max-width: 100%;
 }
 
@@ -221,20 +222,29 @@ transform: scale(1.03);
     margin-bottom: 0px;
 }
 
-.ApexDeploymentContent{
-    width: 100%;
-    overflow: auto;
-    max-height: calc(100vh - var(--xl-breakpoint-header-height))
+.ApexTopRow{
+    min-width: 100%;
+    min-height: 500px;
+    /* border: 2px solid blue; */
+
 }
 
-  .ApexTopRow{
-      min-width: 100%;
-  }
+.ApexBottomRow{
+    min-height: 450px;
+    /* border: 2px solid red; */
+}
+
+.ApexDeploymentContent{
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: none;
+    max-height: calc(100vh - var(--xl-breakpoint-header-height))
+}
 
   .ApexToprowTile{
       /* border: 2px solid red; */
       padding-bottom: 20px;
-  }
+}
 
 
   .ApexSnapshot{
@@ -243,6 +253,9 @@ transform: scale(1.03);
     border-radius: 20px;
     background-color: var(--black);
     padding: 25px 25px 25px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .ApexSnapshotLoader{
@@ -252,15 +265,9 @@ transform: scale(1.03);
     justify-content: center;
 }
 
-.ApexSnapshotTitle{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
 .ApexImageWrapper{
     width: 100%;
+    /* max-width: 150px; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -273,7 +280,7 @@ transform: scale(1.03);
 
 .ApexImage{
     width: 100%;
-    max-width: 300px;
+    max-width: 220px;
 }
 
 .ApexHeaderText{
@@ -332,6 +339,48 @@ transform: scale(1.03);
 
 .ApexDatatableWrapper{
     border-radius: 20px;
-    /* border: 2px solid red; */
     overflow: hidden !important;
+    /* border: 2px solid red; */
+    height: 400px;
+}
+
+.Placeholder{
+    color: var(--extra-light-grey);
+    border-radius: 4px;
+    margin-right: 6px;
+}
+
+.ApexInsightsWrapper{
+    /* border: 2px solid red; */
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ApexInsightItem{
+    color: var(--orange);
+    font-size: 3em;
+    padding-right: 10px;
+    padding: 0px 0px 0px 0px;
+    /* border: 1px solid green; */
+    width: 100px;
+}
+
+.ApexInsightItemWrapper{
+    display: flex;
+    /* border: 2px solid blue; */
+    width: 100%;
+    max-width: 300px;
+    justify-content: space-between;
+    align-items: end;
+    flex-shrink: 2;
+    /* height: 100px; */
+}
+
+.ApexInsightItemSpan{
+    padding-bottom: 10px;
+    padding-left: 30px;
+    
 }

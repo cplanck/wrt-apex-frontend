@@ -1,6 +1,7 @@
 import { Card, CardBody } from 'reactstrap';
 import { useQuery } from '@tanstack/react-query';
 import {Link} from 'react-router-dom'
+import PlaceholderAnimation from './Placeholders';
 
 function ApexCardsGroup(props){
 
@@ -19,7 +20,7 @@ function ApexCardsGroup(props){
     if(status == 'loading'){
         Return = 'NOT LOADED!'
         for(let i = 0; i < 10; i++){
-            cards.push(<ApexCards apexID={'0'} id={''} apex={''} deployment={''} status={''} setApexID={''} />)
+            cards.push(<ApexCardsLoader/>)
         }
 
     }
@@ -59,5 +60,23 @@ function ApexCards(props){
                     </CardBody>
                 </Card>
         </Link>
+    )
+}
+
+
+function ApexCardsLoader(){
+
+    return(
+        <Card className='ApexCard'>
+            <CardBody>
+                <div className='CardWrapper'>
+                    <div style={{width: '100%'}} className='text-truncate text-nowrap'>
+                        <h4 style={{marginBottom: '3px'}}>{<PlaceholderAnimation width={5} size={'lg'}/>}</h4>
+                        <span>{<PlaceholderAnimation width={7} size={'sm'}/>}</span>
+                        <p className='NoMarginParagraph' style={{fontSize: '0.75em'}}>{<PlaceholderAnimation width={5} size={'sm'}/>}</p>
+                    </div>
+                </div>  
+            </CardBody>
+        </Card>
     )
 }

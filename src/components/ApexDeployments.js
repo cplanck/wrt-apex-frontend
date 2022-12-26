@@ -5,9 +5,8 @@ import React, { useState } from 'react';
 import GPStrack from './GPStrack';
 import ApexSnapshot from './ApexSnapshot';
 import ApexDataTable from './ApexDataTable';
-import ApexDataTable2 from './ApexDataTable2';
-import ApexDataTable3 from './ApexDataTable3';
 import ApexCardsGroup from './ApexCardsGroup';
+import ApexInsights from './ApexInsights';
 
 
 import '../css/ApexApp.css';
@@ -19,7 +18,6 @@ function ApexDeployments(){
     return(
         <div className='ApexDeployment'>
             <div className='ApexCards'>
-                <span className='p-3 d-none d-lg-block' style={{minWidth: '100%'}}>Deployments</span>
                 <ApexCardsGroup apexID={apexID} setApexID={setApexID}/>
             </div>
             <div className='ApexDeploymentContent container-fluid'>
@@ -33,11 +31,11 @@ function ApexDeployments(){
                 </div>
                 <div className='row ApexBottomRow'>
                     <div className='col-12 col-xl-5 ApexToprowTile'>
-                        <ApexStatistics/>
+                        <ApexInsights apexID={apexID}/>
                     </div>
                     <div className='col-12 col-xl-7 ApexToprowTile'>
                         <div className={'ApexDatatableWrapper'}>
-                        <ApexDataTable3 apexID={apexID}/>
+                        <ApexDataTable apexID={apexID}/>
                         </div>
                     </div>
                 </div>
@@ -69,23 +67,5 @@ function ApexCards(props){
                     </CardBody>
                 </Card>
         </Link>
-    )
-}
-
-
-
-function ApexStatistics(props){
-
-    return(
-        <div className='ApexSnapshot'>
-            <div className='ApexSnapshotTitle'>
-                {/* <div className='Circle' style={{backgroundColor: props.status == 'active' ? 'var(--green)':'var(--purple)', marginRight: '15px'}}></div> */}
-                <h1>Insights</h1>
-            </div>
-            <div className='ApexImageWrapper'>
-            </div>
-            <h4>Bellows Airforce Base</h4>
-            <h5>Active from: <span className='ActiveFromText'>06/22/2022</span> - <span className='ActiveFromText'>08/15/2022</span></h5>
-        </div>
     )
 }

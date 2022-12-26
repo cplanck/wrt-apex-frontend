@@ -2,6 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import apexImage from '../assets/images/APEX.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import PlaceholderAnimation from './Placeholders';
+
 
 
 function ApexSnapshot(props){
@@ -28,31 +30,20 @@ function ApexSnapshot(props){
     }
 
 
-    let content = ''
-    if(status == 'loading'){
-        content = 
+    let content = 
         <div className='ApexSnapshot'>
-            <div className='ApexSnapshotLoader'>
-                <FontAwesomeIcon icon={faSpinner} spin size="xl"/>
-            </div>
-        </div>
-    }
-    else{
-        content = 
-        <div className='ApexSnapshot'>
-            <div className='ApexSnapshotTitle'>
-                <h1 className='ApexHeaderText'>{data?data.apex : ''}</h1>
-                {/* <div className='Circle' style={ApexStatus}></div> */}
-            </div>
+            <h1 className='ApexHeaderText'>{data?data.apex : <PlaceholderAnimation width={5} size={'sm'}/>}</h1>
             <div className='ApexImageWrapper'>
                 <img src={apexImage} className='ApexImage'/>
             </div>
-            <h3>{data?data.deployment_site : ''}</h3>
-            <span>{data?data.state : ''}, {data?data.country : ''}</span>
-            <p className='NoMarginParagraph' style={ApexStatusTextStyle}>{ApexStatusText}</p>
-            <p className='NoMarginParagraph'>Operational from: <span className='ActiveFromText'>06/22/2022</span> - <span className='ActiveFromText'>08/15/2022</span></p>
+            <div>
+                <h3>{data?data.deployment_site : <PlaceholderAnimation width={3} size={''}/>}</h3>
+                <span>{data?data.state : <PlaceholderAnimation width={5} size={'sm'}/>}, {data?data.country : <PlaceholderAnimation width={5} size={'sm'}/>}</span>
+                <p className='NoMarginParagraph' style={ApexStatusTextStyle}>{ApexStatusText?ApexStatusText: <PlaceholderAnimation width={3} size={''}/>}</p>
+                <p className='NoMarginParagraph'>Operational from: <span className='ActiveFromText'>{data?data.start_date : <PlaceholderAnimation width={3} size={''}/>}</span> to <span className='ActiveFromText'>{data?data.end_date : <PlaceholderAnimation width={3} size={''}/>}</span></p>
+            </div>
         </div>
-    }
+    // }
 
     return(content)
 }
