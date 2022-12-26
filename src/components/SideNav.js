@@ -2,7 +2,13 @@ import '../css/ApexApp.css';
 import wrt_logo from '../assets/images/wrt-logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {Link} from 'react-router-dom'
-import { faCoffee, faHurricane, faUserAstronaut, faWrench } from '@fortawesome/free-solid-svg-icons'
+import { faHurricane, faUserAstronaut, faWrench } from '@fortawesome/free-solid-svg-icons'
+// import { Tooltip } from 'react-tooltip';
+// import 'react-tooltip/dist/react-tooltip.css'
+import Tooltip from '@mui/material/Tooltip';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+
 
 
 function SideNav(props){
@@ -12,9 +18,9 @@ function SideNav(props){
                 <img src={wrt_logo} className='wrt-logo'/>
             </div>
             <div className='icon-group'>
-                <SideNavIcon icon={faHurricane} link={'deployments'} setActivePage = {props.setActivePage} />
-                <SideNavIcon icon={faUserAstronaut}  link={'users'} setActivePage = {props.setActivePage} />
-                <SideNavIcon icon={faWrench}  link={'settings'} setActivePage = {props.setActivePage}/>
+                <SideNavIcon icon={faHurricane} link={'deployments'} setActivePage = {props.setActivePage} title={'Deployments'}/>
+                <SideNavIcon icon={faUserAstronaut}  link={'users'} setActivePage = {props.setActivePage} title={'Users'} />
+                <SideNavIcon icon={faWrench}  link={'settings'} setActivePage = {props.setActivePage} title={'Settings'}/>
             </div>
         </div>
     )
@@ -28,8 +34,10 @@ function SideNavIcon(props){
     let currentPage = window.location.pathname.split('/')[1]
 
     return(
-        <Link to={props.link} className={currentPage == props.link ? 'icon active': 'icon'} onClick={()=>{props.setActivePage(props.link)}}>
-            <FontAwesomeIcon icon={props.icon}/>
-        </Link>
+        <Tooltip title={props.title} placement="right-start" arrow enterDelay={500}>
+            <Link to={props.link} className={currentPage == props.link ? 'icon active': 'icon'} onClick={()=>{props.setActivePage(props.link)}}>
+                <FontAwesomeIcon icon={props.icon}/>    
+            </Link>
+        </Tooltip>
     )
 }

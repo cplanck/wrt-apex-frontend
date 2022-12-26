@@ -25,8 +25,8 @@ function GPStrack(props) {
 
   let entityArray = []
 
-  let fly_to_lat = 0
-  let fly_to_long = 0
+  let fly_to_lat = 0 //39.5996698
+  let fly_to_long = 0 // -102.1092965
   let { data, status, error } = useQuery([props.deploymentId], fetchData, {staleTime:100000000}); 
 
   if(status === 'loading'){
@@ -36,8 +36,6 @@ function GPStrack(props) {
       console.log(error.message) 
     }
   else{ 
-      console.log(data)
-      console.log(data.length)
       for(let i = 0; i < data.length; i++){
         let sample = data[i]
         let lat = parseFloat(sample['latitude'])
@@ -57,9 +55,9 @@ function GPStrack(props) {
     <div>
       <div id="cesium-container">
         <Viewer className='cesium-viewer' projectionPicker={false} animation={false} infoBox={false} homeButton={false} fullscreenButton={false} timeline={false} navigationHelpButton={false} baseLayerPicker={false} sceneModePicker={false} navigationInstructionsInitiallyVisible={false} geocoder={false}>
-          <CameraFlyTo destination={Cartesian3.fromDegrees(fly_to_long, fly_to_lat, 200)} duration={2.5}/>
+          <CameraFlyTo destination={Cartesian3.fromDegrees(fly_to_long, fly_to_lat, 200)} duration={2}/>
             <Entity>
-              <PolylineGraphics positions={positionArray}  material={Color.fromCssColorString('#00416A')}/>
+              <PolylineGraphics positions={positionArray}  material={Color.fromCssColorString('#E99B05')}/>
             </Entity>
         </Viewer>
       </div>

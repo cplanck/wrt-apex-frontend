@@ -141,30 +141,38 @@
   }
 
   .ApexCards{
-    width: 300px;
+    min-width: 280px;
     max-height: 90vh; 
-    overflow: auto;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
     padding-left: 5px;
+    border: 0px solid green;
   }
 
   .ApexCards::-webkit-scrollbar {
     display: none;
   }
 
-  .ApexCards {
-   
-  }
 
 .ApexCard{
     background-color: var(--light-grey) !important;
     margin-bottom: 15px;
     margin-right: 15px;
-    min-width: 200px !important;
+    width: 230px;
+    min-height: 100px;
+}
+
+.CardWrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* max-width: 150px; */
+    max-width: 100%;
 }
 
 .ApexCard.active{
@@ -185,13 +193,6 @@ transform: scale(1.03);
     border-radius: 50%;
 }
 
-.CardWrapper{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
   .ApexDeployment{
       display: flex;
   }
@@ -199,19 +200,25 @@ transform: scale(1.03);
 
 
 @media screen and (max-width: 992px) {
-.ApexDeployment{
-    flex-direction: column;
+
+    .ApexDeployment{
+        flex-direction: column;
+    }
+
+    .ApexCards{
+        width: 100%;
+        flex-direction: row;
+        overflow: auto;
+    }
+
+    .ApexCard{
+        min-width: 200px;
+    }
+
 }
 
-.ApexCards{
-    width: 100%;
-    flex-direction: row;
-    overflow: auto;
-}
-
-.ApexCard{
-    min-width: 200px;
-}
+.NoMarginParagraph{
+    margin-bottom: 0px;
 }
 
 .ApexDeploymentContent{
@@ -238,10 +245,18 @@ transform: scale(1.03);
     padding: 25px 25px 25px 25px;
 }
 
+.ApexSnapshotLoader{
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .ApexSnapshotTitle{
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
 }
 
 .ApexImageWrapper{
@@ -259,6 +274,10 @@ transform: scale(1.03);
 .ApexImage{
     width: 100%;
     max-width: 300px;
+}
+
+.ApexHeaderText{
+    font-size: 3.5em;
 }
 
 .cesium-widget-credits{

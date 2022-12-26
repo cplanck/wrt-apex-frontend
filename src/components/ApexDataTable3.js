@@ -11,11 +11,16 @@ const darkTheme = createTheme({
     palette: {
       mode: 'dark',
       text: {
-        primary: '#ffffff',
-        secondary: '#ffffff',
+        primary: '#FFFFFF',
+        secondary: '#E99B05',
       },
+      background: {
+        default: '#1E1F23',
+        paper: '#1E1F23',
+        },
     },
   });
+  
 
 const ApexDataTable3 = (props) => {
   const columns = useMemo(
@@ -69,7 +74,7 @@ const ApexDataTable3 = (props) => {
     const url = new URL(
       '/api/apex/frontend/rawdata/?deployment=' + props.apexID,
       process.env.NODE_ENV === 'production'
-        ? 'https://www.material-react-table.com'
+        ? 'http://localhost:8000'
         : 'http://localhost:8000',
     );
     url.searchParams.set(

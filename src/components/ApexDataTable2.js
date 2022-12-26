@@ -44,7 +44,6 @@ const Example = () => {
 
       const response = await fetch(url.href);
       const json = await response.json();
-      console.log(json)
       return json;
     },
     { keepPreviousData: true },
