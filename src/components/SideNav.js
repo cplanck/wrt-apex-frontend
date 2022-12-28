@@ -3,8 +3,6 @@ import wrt_logo from '../assets/images/wrt-logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {Link} from 'react-router-dom'
 import { faHurricane, faUserAstronaut, faWrench } from '@fortawesome/free-solid-svg-icons'
-// import { Tooltip } from 'react-tooltip';
-// import 'react-tooltip/dist/react-tooltip.css'
 import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';

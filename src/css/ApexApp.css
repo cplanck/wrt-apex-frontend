@@ -392,5 +392,102 @@ transform: scale(1.03);
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+
+.LoginFormWrapper{
+    /* border: 2px solid blue; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    padding-top: 200px;
+    min-height: 100vh;
+    background-color: var(--dark-grey);
+    /* background-color: var(--black); */
+    color: var(--light-text);
+}
+
+.LoginEntry{
     /* border: 2px solid red; */
+    min-width: 100%;
+    /* max-width: 350px; */
+    min-width: 320px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    padding: 0px 10px 10px 10px;
+    margin-top: 10px;
+}
+
+.LoginButton{
+    max-width: 150px;
+    width: 100%;
+    height: 50px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 1.1em;
+    background-color: var(--blue);
+    color: var(--light-text);
+    margin-top: 10px;
+    border: 0px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonText{
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.InputFormatting{
+    border-radius: 8px;
+    min-height: 50px;
+    padding-left: 10px;
+    margin-top: 5px;
+    background-color: black;
+    color: var(--light-text);
+    border: 0px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px black inset !important;
+}
+input:-webkit-autofill{
+    -webkit-text-fill-color: var(--light-text) !important;
+}
+
+.LoginForm{
+    /* background-color: var(--light-grey); */
+    /* padding: 20px 10px 20px 10px; */
+    border-radius: 20px;
+}
+
+.WrtLoginLogoWrapper{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* background-color: var(--black); */
+    padding: 20px 20px 20px 20px;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.FormErrorMessage{
+    padding-top: 3px;
+    color: #EB0000;
+    font-size: .8em;
+}
+
+.LoginInput{
+    font-size: 1em;
+}
+
+.AvatarButtonGroup{
+    display: flex;
+    align-items: center;
 }

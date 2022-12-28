@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import PlaceholderAnimation from './Placeholders';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClock, faArrowsToCircle, faAtom, faCircleInfo } from '@fortawesome/free-solid-svg-icons'
+import { faClock, faArrowsToCircle, faHurricane, faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import Tooltip from '@mui/material/Tooltip';
 var numeral = require('numeral');
 
@@ -43,7 +43,7 @@ function ApexInsights(props){
                 <div className='ApexInsightsWrapper'>
                     <span className='ApexInsightItemWrapper'>
                         <div className='ApexInsightItem'>
-                            <FontAwesomeIcon icon={faAtom} className='pe-3's ize={'xs'}/>
+                            <FontAwesomeIcon icon={faHurricane} className='pe-3's size={'xs'} />
                             {data?distance_traveled: <PlaceholderAnimation width={12} size={'sm'}/>}
                         </div>
                             <div className='ApexInsightItemSpan'>

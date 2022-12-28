@@ -9,6 +9,7 @@ import Settings from './components/Settings'
 import {Route, Routes} from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom';
 import TopNav from './components/TopNav';
+import LoginPage from './components/LoginPage';
 
 
 
@@ -19,34 +20,45 @@ function ApexApp() {
 
   const [activePage, setActivePage] = useState('/deployment');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
+  if(!userLoggedIn){
+    getUserCredentials(setUserLoggedIn)
+  }
 
-  return (
-    <BrowserRouter>
-      <div className='ApexApp'>
-        <SideNav activePage={activePage} setActivePage={setActivePage} menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
-        <div className={menuOpen ? 'DashboardActive' : 'Dashboard'}>
-          <TopNav menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
-          <div className='MainPanel'>
-          <Routes>
-              <Route path='/deployments' element={<ApexDeployments />}/>
-              <Route path='/users' element={<Users />}/>
-              <Route path='/settings' element={<Settings />}/>
-          </Routes>
+  if(!userLoggedIn){
+    return (
+      <LoginPage setUserLoggedIn={setUserLoggedIn} userLoggedIn={userLoggedIn}/>
+      )
+  }
+  else{
+    return (
+      <BrowserRouter>
+        <div className='ApexApp'>
+          <SideNav activePage={activePage} setActivePage={setActivePage} menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
+          <div className={menuOpen ? 'DashboardActive' : 'Dashboard'}>
+            <TopNav menuOpen={menuOpen} setMenuOpen={setMenuOpen} setUserLoggedIn={setUserLoggedIn}/>
+            <div className='MainPanel'>
+            <Routes>
+                <Route path='/deployments' element={<ApexDeployments />}/>
+                <Route path='/users' element={<Users />}/>
+                <Route path='/settings' element={<Settings />}/>
+            </Routes>
+            </div>
           </div>
         </div>
-      </div>
-    </BrowserRouter>
-  );
+      </BrowserRouter>
+    );
+  }
+
+  
+}
+
+function getUserCredentials(setUserLoggedIn){
+  let token = window.localStorage.getItem('user', 'token')
+  if(token){
+    setUserLoggedIn(true)
+  }
 }
 
 export default ApexApp;
-
-
-
-
-
-
-    // <div className="App">
-    //   {/* <GPStrack deploymentId={7}/>  */}
-    // </div>

@@ -20,6 +20,7 @@
     "bootstrap": "^5.2.3",
     "cesium": "^1.100.0",
     "craco-cesium": "^1.2.0",
+    "formik": "^2.2.9",
     "hamburger-react": "^2.5.0",
     "material-react-table": "^1.5.2",
     "numeral": "^2.0.6",
@@ -33,7 +34,8 @@
     "resium": "^1.16.0",
     "styled-components": "^5.3.6",
     "utm": "^1.1.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "craco start",
