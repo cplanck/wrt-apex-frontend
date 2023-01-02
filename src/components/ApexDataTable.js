@@ -4,8 +4,6 @@ import MaterialReactTable from 'material-react-table';
 import { useQuery } from '@tanstack/react-query';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
-import { IconButton, Tooltip } from '@mui/material';
-import RefreshIcon from '@mui/icons-material/Refresh';
 
 const darkTheme = createTheme({
     palette: {
@@ -24,7 +22,6 @@ const darkTheme = createTheme({
 
 const ApexDataTable3 = (props) => {
   const columns = useMemo(
-    //column definitions...
     () => [
         {
         accessorKey: 'gps_hhmmss',
@@ -45,21 +42,6 @@ const ApexDataTable3 = (props) => {
 
   //optionally access the underlying virtualizer instance
   const rowVirtualizerInstanceRef = useRef(null);
-
-//   const [data, setData] = useState([]);
-//   const [isLoading, setIsLoading] = useState(true);
-//   const [sorting, setSorting] = useState([]);
-
-
-
-
-//   useEffect(() => {
-//     if (typeof window !== 'undefined') {
-//       setData(makeData(10_000));
-//       setIsLoading(false);
-//     }
-//   }, []);
-
   const [columnFilters, setColumnFilters] = useState([]);
   const [globalFilter, setGlobalFilter] = useState('');
   const [sorting, setSorting] = useState([]);
@@ -71,24 +53,27 @@ const ApexDataTable3 = (props) => {
 
   const { data, isError, isFetching, isLoading, refetch } = useQuery(['table-data' + '_' + String(props.apexID), columnFilters, globalFilter, pagination.pageIndex, pagination.pageSize, sorting],
   async () => {
-    const url = new URL(
-      '/api/apex/frontend/rawdata/?deployment=' + props.apexID,
-      process.env.NODE_ENV === 'production'
-        ? 'http://localhost:8000'
-        : 'http://localhost:8000',
-    );
-    url.searchParams.set(
-      'start',
-      `${pagination.pageIndex * pagination.pageSize}`,
-    );
+    // const url = new URL(
+    //   '/api/apex/frontend/rawdata/?deployment=' + props.apexID,
+    //   process.env.NODE_ENV === 'production'
+    //     ? 'http://localhost:8000'
+    //     : 'http://localhost:8000',
+    // );
+    // url.searchParams.set(
+    //   'start',
+    //   `${pagination.pageIndex * pagination.pageSize}`,
+    // );
 
-    url.searchParams.set('size', `${pagination.pageSize}`);
-    url.searchParams.set('filters', JSON.stringify(columnFilters ?? []));
-    url.searchParams.set('globalFilter', globalFilter ?? '');
-    url.searchParams.set('sorting', JSON.stringify(sorting ?? []));
+    let url = process.env.REACT_APP_BACKEND_ROOT + '/api/apex/frontend/rawdata/?deployment=' + props.apexID
+
+    // url.searchParams.set('size', `${pagination.pageSize}`);
+    // url.searchParams.set('filters', JSON.stringify(columnFilters ?? []));
+    // url.searchParams.set('globalFilter', globalFilter ?? '');
+    // url.searchParams.set('sorting', JSON.stringify(sorting ?? []));
 
   console.log(url)
-    const response = await fetch(url.href);
+    const options = {method: 'GET', headers: {Authorization: 'Token ' + props.userDetails.token}}
+    const response = await fetch(url, options);
     const json = await response.json();
     return json;
   },

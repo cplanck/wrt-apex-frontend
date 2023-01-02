@@ -4,12 +4,12 @@ import React, { useState } from 'react';
 import GPStrack from './components/GPStrack'
 import SideNav from './components/SideNav'
 import ApexDeployments from './components/ApexDeployments'
-import Users from './components/Users'
 import Settings from './components/Settings'
-import {Route, Routes} from 'react-router-dom'
+import {Route, Routes, Navigate} from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom';
 import TopNav from './components/TopNav';
 import LoginPage from './components/LoginPage';
+import Users from './components/Users';
 
 
 
@@ -18,17 +18,37 @@ Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmOWMyN
 
 function ApexApp() {
 
+  // window.addEventListener('online', handleConnection);
+  // window.addEventListener('offline', handleConnection);
+
+  // function handleConnection() {
+  //   if (navigator.onLine) {
+  //     isReachable(getServerUrl()).then(function(online) {
+  //       if (online) {
+  //         // handle online status
+  //         console.log('online');
+  //       } else {
+  //         console.log('no connectivity');
+  //       }
+  //     });
+  //   } else {
+  //     // handle offline status
+  //     console.log('offline');
+  //   }
+  // }
+
   const [activePage, setActivePage] = useState('/deployment');
   const [menuOpen, setMenuOpen] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [userDetails, setUserDetails] = useState();
 
   if(!userLoggedIn){
-    getUserCredentials(setUserLoggedIn)
+    getUserCredentials(setUserLoggedIn, setUserDetails)
   }
 
   if(!userLoggedIn){
     return (
-      <LoginPage setUserLoggedIn={setUserLoggedIn} userLoggedIn={userLoggedIn}/>
+      <LoginPage setUserLoggedIn={setUserLoggedIn} userLoggedIn={userLoggedIn} setUserDetails={setUserDetails}/>
       )
   }
   else{
@@ -37,12 +57,14 @@ function ApexApp() {
         <div className='ApexApp'>
           <SideNav activePage={activePage} setActivePage={setActivePage} menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
           <div className={menuOpen ? 'DashboardActive' : 'Dashboard'}>
-            <TopNav menuOpen={menuOpen} setMenuOpen={setMenuOpen} setUserLoggedIn={setUserLoggedIn}/>
+            <TopNav menuOpen={menuOpen} setMenuOpen={setMenuOpen} setUserLoggedIn={setUserLoggedIn} userDetails={userDetails}/>
             <div className='MainPanel'>
             <Routes>
-                <Route path='/deployments' element={<ApexDeployments />}/>
-                <Route path='/users' element={<Users />}/>
+                <Route path='/deployments' element={<ApexDeployments userDetails={userDetails} />}/>
+                <Route path='/users' element={<Users userDetails={userDetails} />}/>
                 <Route path='/settings' element={<Settings />}/>
+                {/* <Route path='/' element={<ApexDeployments userDetails={userDetails} />}/> */}
+                <Route path='/' element={<Navigate to="/deployments"/>}/>
             </Routes>
             </div>
           </div>
@@ -54,9 +76,13 @@ function ApexApp() {
   
 }
 
-function getUserCredentials(setUserLoggedIn){
-  let token = window.localStorage.getItem('user', 'token')
+function getUserCredentials(setUserLoggedIn, setUserDetails){
+  let token = window.localStorage.getItem('user')
+  let firstName = window.localStorage.getItem('firstName')
+  let lastName = window.localStorage.getItem('lastName')
+
   if(token){
+    setUserDetails({'firstName': firstName, 'lastName': lastName, 'token': token })
     setUserLoggedIn(true)
   }
 }

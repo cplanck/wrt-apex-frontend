@@ -10,8 +10,8 @@ function ApexSnapshot(props){
 
     let fetchData = async() => {
         let url = process.env.REACT_APP_BACKEND_ROOT + '/api/apex/frontend/deployments/?deployment=' + props.apexID
-        console.log(url)
-        const response = await fetch(url);
+        const options = {method: 'GET', headers: {Authorization: 'Token ' + props.userDetails.token}}
+        const response = await fetch(url, options);
         const data = await response.json();
         return data;
     }

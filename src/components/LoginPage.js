@@ -6,17 +6,19 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
 import * as Yup from 'yup';
 
-async function AuthenticateUser(values, loading, setLoading, setUserLoggedIn){
+async function AuthenticateUser(values, loading, setLoading, setUserLoggedIn, setUserDetails){
   let url = process.env.REACT_APP_BACKEND_ROOT + '/api/apex/frontend/users/'
   const response = await fetch(url, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(values)});
   const data = await response.json();
  
   if(data['token']){
+    window.localStorage.setItem('user', data['token'])
+    window.localStorage.setItem('firstName', data['first_name'])
+    window.localStorage.setItem('lastName', data['last_name'])
+    setUserDetails({'firstName': data['first_name'], 'lastName': data['last_name'], 'token': data['token']})
     setLoading(false)
     setUserLoggedIn(true)
-    window.localStorage.setItem('user', data['token'])
-    window.location.href = "/deployments"
-    
+    window.location.href = "/deployments"    
   }
   else{
     setLoading(false)
@@ -40,7 +42,7 @@ const LoginPage = (props) => {
       }),
     onSubmit: values => {
       setLoading(true)
-      AuthenticateUser(values, loading, setLoading, props.setUserLoggedIn)
+      AuthenticateUser(values, loading, setLoading, props.setUserLoggedIn, props.setUserDetails)
     },
   });
 
@@ -56,7 +58,7 @@ const LoginPage = (props) => {
           <h3>APEX Dashboard</h3>
         </div>
           <div className='LoginEntry'>
-          <label className='LoginInput' htmlFor="email">Email Address</label>
+          {/* <label className='LoginInput' htmlFor="email">Email Address</label> */}
           <input
               id="email"
               name="email"
@@ -65,6 +67,7 @@ const LoginPage = (props) => {
               onBlur={formik.handleBlur}
               value={formik.values.email}
               className='InputFormatting'
+              placeholder='Email'
           />
           {formik.touched.email && formik.errors.email ? (
               <div className='FormErrorMessage'>{formik.errors.email}</div>
@@ -72,7 +75,7 @@ const LoginPage = (props) => {
           </div>
               
           <div className='LoginEntry'>
-              <label className='LoginInput' htmlFor="password">Password</label>
+              {/* <label className='LoginInput' htmlFor="password">Password</label> */}
           <input
               id="password"
               name="password"
@@ -81,7 +84,7 @@ const LoginPage = (props) => {
               onBlur={formik.handleBlur}
               value={formik.values.password}
               className='InputFormatting'
-          
+              placeholder='Password'
           />
           {formik.touched.password && formik.errors.password ? (
               <div className='FormErrorMessage'>{formik.errors.password}</div>

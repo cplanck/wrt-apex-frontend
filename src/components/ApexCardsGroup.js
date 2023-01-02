@@ -6,9 +6,9 @@ import PlaceholderAnimation from './Placeholders';
 function ApexCardsGroup(props){
 
     let fetchData = async() => {
-        let url = process.env.REACT_APP_BACKEND_ROOT + '/api/apex/frontend/deployments'
-        console.log(url)
-        const response = await fetch(url);
+        let url = process.env.REACT_APP_BACKEND_ROOT + '/api/apex/frontend/deployments/'
+        let options = {headers: {Authorization: 'Token ' + props.userDetails.token}}
+        const response = await fetch(url, options);
         const data = await response.json();
         return data;
     }

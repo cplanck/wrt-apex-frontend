@@ -1,6 +1,6 @@
 import '../css/ApexApp.css';
-import { Viewer, Polyline, CameraFlyTo, Entity, PolylineCollection, PolylineGraphics } from "resium";
-import { Cartesian3, Color, Material } from "cesium";
+import { Viewer, CameraFlyTo, Entity, PolylineGraphics } from "resium";
+import { Cartesian3, Color } from "cesium";
 import {Ion} from "cesium";
 import { useQuery } from "@tanstack/react-query";
 import React from 'react';
@@ -13,9 +13,9 @@ function GPStrack(props) {
     Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmOWMyNGYwNS1iYzY2LTRkMDItYWYwYi00NDZiOTFlZTQzYWUiLCJpZCI6MTE4OTA2LCJpYXQiOjE2NzE1NzcyMjh9.-S71chghA9n7JxDeaZKDpAJi_463RAgGLwz5X7mHQ4Q";
 
     const fetchData = async () => {
-    const options = {headers: {Authorization: 'Token d8f855813b24563e6645c9b663ee6bd07f4ed4d3'}}
-    const API_URL = process.env.REACT_APP_BACKEND_ROOT + '/api/apex/frontend/rawdata/?deployment=' + props.deploymentId
-    const res = await fetch(API_URL, options)
+    const url = process.env.REACT_APP_BACKEND_ROOT + '/api/apex/frontend/rawdata/?deployment=' + props.deploymentId
+    const options = {headers: {Authorization: 'Token ' + props.userDetails.token}}
+    const res = await fetch(url, options)
     return res.json()
     };
 

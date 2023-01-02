@@ -20,7 +20,7 @@ function SideNav(props){
             <div className='icon-group'>
                 <SideNavIcon icon={faHurricane} link={'deployments'} setActivePage = {props.setActivePage} title={'Deployments'}/>
                 <SideNavIcon icon={faUserAstronaut}  link={'users'} setActivePage = {props.setActivePage} title={'Users'} />
-                <SideNavIcon icon={faWrench}  link={'settings'} setActivePage = {props.setActivePage} title={'Settings'}/>
+                {/* <SideNavIcon icon={faWrench}  link={'settings'} setActivePage = {props.setActivePage} title={'Settings'}/> */}
             </div>
         </div>
     )
@@ -33,9 +33,13 @@ function SideNavIcon(props){
 
     let currentPage = window.location.pathname.split('/')[1]
 
+    if (currentPage == ''){
+        currentPage = 'deployments'
+    }
+
     return(
         <Tooltip title={props.title} placement="right-start" arrow enterDelay={500}>
-            <Link to={props.link} className={currentPage == props.link ? 'icon active': 'icon'} onClick={()=>{props.setActivePage(props.link)}}>
+            <Link to={props.link} className={currentPage == props.link || '' ? 'icon active': 'icon'} onClick={()=>{props.setActivePage(props.link)}}>
                 <FontAwesomeIcon icon={props.icon}/>    
             </Link>
         </Tooltip>

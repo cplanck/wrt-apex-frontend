@@ -11,31 +11,31 @@ import ApexInsights from './ApexInsights';
 
 import '../css/ApexApp.css';
 
-function ApexDeployments(){
+function ApexDeployments(props){
 
     const [apexID, setApexID] = useState('1');
 
     return(
         <div className='ApexDeployment'>
             <div className='ApexCards'>
-                <ApexCardsGroup apexID={apexID} setApexID={setApexID}/>
+                <ApexCardsGroup apexID={apexID} setApexID={setApexID} userDetails={props.userDetails}/>
             </div>
             <div className='ApexDeploymentContent container-fluid'>
                 <div className='row ApexTopRow'>
                     <div className='col-12 col-xl-5 col-xxl-4 ApexToprowTile'>
-                        <ApexSnapshot apexID={apexID} />
+                        <ApexSnapshot apexID={apexID} userDetails={props.userDetails}/>
                     </div>
                     <div className='col-12 col-xl-7 col-xxl-8 ApexToprowTile'>
-                        <GPStrack deploymentId={apexID}/>
+                        <GPStrack deploymentId={apexID} userDetails={props.userDetails}/>
                     </div>
                 </div>
                 <div className='row ApexBottomRow'>
                     <div className='col-12 col-xl-12 col-xxl-5 ApexToprowTile'>
-                        <ApexInsights apexID={apexID}/>
+                        <ApexInsights apexID={apexID} userDetails={props.userDetails}/>
                     </div>
                     <div className='col-12 col-xl-12 col-xxl-7 ApexToprowTile'>
                         <div className={'ApexDatatableWrapper'}>
-                        <ApexDataTable apexID={apexID}/>
+                        <ApexDataTable apexID={apexID} userDetails={props.userDetails}/>
                         </div>
                     </div>
                 </div>
