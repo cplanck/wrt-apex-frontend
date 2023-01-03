@@ -7,7 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-serviceWorkerRegistration.register();
+serviceWorkerRegistration.unregister();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const queryClient = new QueryClient()

@@ -19,11 +19,21 @@ function GPStrack(props) {
     return res.json()
     };
 
+  
+    function plotLine(){
+      let line = Viewer.entities.add({
+        name: "Green rhumb line",
+        polyline: {
+          positions: Cartesian3.fromDegreesArray([-75, 35, -125, 35]),
+          width: 6,
+          material: Color.GREEN
+        }
+    });
+    }
+
 
   let positions = []
   let positionArray = []
-
-  let entityArray = []
 
   let fly_to_lat = 0 //39.5996698
   let fly_to_long = 0 // -102.1092965
@@ -55,10 +65,10 @@ function GPStrack(props) {
     <div>
       <div id="cesium-container">
         <Viewer className='cesium-viewer' projectionPicker={false} animation={false} infoBox={false} homeButton={false} fullscreenButton={false} timeline={false} navigationHelpButton={false} baseLayerPicker={false} sceneModePicker={false} navigationInstructionsInitiallyVisible={false} geocoder={false}>
-          <CameraFlyTo destination={Cartesian3.fromDegrees(fly_to_long, fly_to_lat, 200)} duration={2}/>
+          {/* <CameraFlyTo destination={Cartesian3.fromDegrees(fly_to_long, fly_to_lat, 200)} duration={2}/>
             <Entity>
               <PolylineGraphics positions={positionArray}  material={Color.fromCssColorString('#E99B05')}/>
-            </Entity>
+            </Entity> */}
         </Viewer>
       </div>
     </div>
