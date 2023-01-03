@@ -35,13 +35,4 @@
       console.log('Service Worker is not supported by browser.');
     }
   </script> -->
-
-  <script>
-    const html = [
-        'cesiumWorkerBootstrapper.js',
-      ].map(
-        worker => `<link rel="prefetch" href="/cesium/Workers/${worker}">`
-      ).join('\n');
-      document.body.insertAdjacentHTML('beforeend', html);
-  </script>
 </html>
